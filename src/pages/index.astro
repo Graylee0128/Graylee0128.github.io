@@ -1,0 +1,184 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import {
+  credentials,
+  education,
+  experiences,
+  homeSections,
+  profile,
+  projects,
+  site,
+  skillGroups
+} from '../data/site';
+
+type ProjectEvidence = (typeof projects)[number]['evidence'][number];
+
+function hasHref(item: ProjectEvidence): item is ProjectEvidence & { href: string } {
+  return 'href' in item;
+}
+
+function getEvidenceNote(item: ProjectEvidence) {
+  return 'note' in item ? item.note : 'Reserved for future project evidence.';
+}
+---
+
+<BaseLayout title={`${site.name} | Home`} description={site.description}>
+  <aside class="floating-nav" aria-label="Page sections">
+    <p class="floating-nav-title">On This Page</p>
+    <div class="floating-nav-links">
+      {homeSections.map((section) => <a href={section.href} class="floating-nav-link">{section.label}</a>)}
+    </div>
+  </aside>
+
+  <main>
+    <section id="hero" class="hero">
+      <div class="hero-bg-grid"></div>
+      <div class="hero-content">
+        <p class="hero-greeting">{profile.greeting}</p>
+        <h1 class="hero-name">
+          {site.name}
+          <span class="hero-name-zh">{site.nameZh}</span>
+        </h1>
+        <p class="page-kicker">{profile.kicker}</p>
+        <h2 class="hero-title">{site.title}</h2>
+        <p class="hero-subtitle">{profile.subtitle}</p>
+        <div class="hero-cta">
+          <a href="#projects" class="btn btn-primary">View Projects</a>
+          <a href="/articles/" class="btn btn-outline">Read Articles</a>
+        </div>
+        <div class="hero-socials">
+          <a href={site.github} target="_blank" rel="noopener">GitHub</a>
+          <a href={site.linkedin} target="_blank" rel="noopener">LinkedIn</a>
+          <a href={`mailto:${site.email}`}>Email</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="section">
+      <div class="container">
+        <h2 class="section-title">About Me</h2>
+        <div class="about-grid">
+          <div class="about-text">
+            {profile.about.map((paragraph) => <p>{paragraph}</p>)}
+            <div class="about-meta">
+              {profile.meta.map((item) => (
+                <div class="meta-item">
+                  <span class="meta-label">{item.label}</span>
+                  <span>{item.value}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+          <div class="about-card">
+            <div class="card-badge">AWS Certified</div>
+            <p class="card-title">Solutions Architect</p>
+            <p class="card-sub">Associate · SAA-C03</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="experience" class="section section-alt">
+      <div class="container">
+        <h2 class="section-title">Experience</h2>
+        <div class="timeline">
+          {experiences.map((experience) => (
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <div class="timeline-content">
+                <div class="timeline-header">
+                  <div>
+                    <h3 class="timeline-title">{experience.role}</h3>
+                    <p class="timeline-company">{experience.company}</p>
+                  </div>
+                  <span class="timeline-date">{experience.period}</span>
+                </div>
+                <span class="badge">{experience.type}</span>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section id="projects" class="section">
+      <div class="container">
+        <h2 class="section-title">Projects</h2>
+        <div class="projects-grid">
+          {projects.map((project) => (
+            <article class="project-card">
+              <div class="project-header">
+                <div class="project-icon">{project.icon}</div>
+                <div>
+                  <span class="project-date">{project.period}</span>
+                  <span class="project-status">{project.status}</span>
+                </div>
+              </div>
+              <h3 class="project-title">{project.title}</h3>
+              <p class="project-desc">{project.description}</p>
+              <ul class="project-highlights">
+                {project.highlights.map((highlight) => <li>{highlight}</li>)}
+              </ul>
+              <div class="project-tags">
+                {project.tags.map((tag) => <span class="tag">{tag}</span>)}
+              </div>
+              <div class="project-actions" aria-label={`${project.title} evidence links`}>
+                {project.evidence.map((item) => (
+                  hasHref(item)
+                    ? <a class="project-action" href={item.href} target={item.href.startsWith('http') ? '_blank' : undefined} rel={item.href.startsWith('http') ? 'noopener' : undefined}>{item.label}</a>
+                    : <span class="project-action project-action-muted" title={getEvidenceNote(item)}>{item.label}</span>
+                ))}
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section id="skills" class="section section-alt">
+      <div class="container">
+        <h2 class="section-title">Skills</h2>
+        <div class="skills-grid">
+          {skillGroups.map((group) => (
+            <section class="skill-category">
+              <h3 class="skill-cat-title">{group.title}</h3>
+              <div class="skill-tags">
+                {group.skills.map((skill) => <span class="skill-tag">{skill}</span>)}
+              </div>
+            </section>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section id="certs" class="section">
+      <div class="container">
+        <h2 class="section-title">Certifications</h2>
+        <div class="cert-grid">
+          {credentials.map((credential) => (
+            <article class="cert-card">
+              <span class="cert-marker">OK</span>
+              <div class="cert-info">
+                <h3>{credential.title}</h3>
+                <p>{credential.detail}</p>
+                <span class="cert-year">{credential.year}</span>
+              </div>
+            </article>
+          ))}
+        </div>
+
+        <h2 class="section-title" style="margin-top: 3.5rem;">Education</h2>
+        <div class="cert-grid">
+          <article class="cert-card">
+            <span class="cert-marker">EDU</span>
+            <div class="cert-info">
+              <h3>{education.school}</h3>
+              <p>{education.department}</p>
+              <span class="cert-year">{education.degree}</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+</BaseLayout>

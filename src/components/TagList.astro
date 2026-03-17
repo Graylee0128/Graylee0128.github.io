@@ -1,0 +1,18 @@
+---
+import { getTagSlug } from '../utils/posts';
+
+interface Props {
+  tags: string[];
+  linked?: boolean;
+}
+
+const { tags, linked = true } = Astro.props;
+---
+
+<div class="tag-list">
+  {tags.map((tag) => (
+    linked
+      ? <a class="tag" href={`/tags/${getTagSlug(tag)}/`}>{tag}</a>
+      : <span class="tag">{tag}</span>
+  ))}
+</div>

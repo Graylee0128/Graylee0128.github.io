@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="HH favicon">
+  <rect width="64" height="64" rx="14" fill="#0a192f" />
+  <path
+    fill="#ccd6f6"
+    d="M10 16h6v12h8V16h6v32h-6V34h-8v14h-6V16zm24 0h6v12h8V16h6v32h-6V34h-8v14h-6V16z"
+  />
+  <circle cx="56" cy="48" r="4" fill="#64ffda" />
+</svg>

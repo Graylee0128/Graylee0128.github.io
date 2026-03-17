@@ -1,0 +1,424 @@
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 200;
+  padding: 0.9rem 1.5rem;
+  background: rgba(16, 24, 39, 0.88);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 10px 34px rgba(7, 12, 24, 0.22);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.nav-container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.nav-logo {
+  font-family: var(--font-mono);
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--lightest-slate);
+  text-decoration: none;
+  letter-spacing: 0.05em;
+}
+
+.nav-logo span {
+  color: var(--accent);
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-right: auto;
+  padding: 0;
+  list-style: none;
+}
+
+.site-nav-links a {
+  display: inline-flex;
+  min-height: 38px;
+  align-items: center;
+  padding: 0.45rem 0.8rem;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  color: var(--light-slate);
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  text-decoration: none;
+  transition: color var(--transition), background var(--transition), border-color var(--transition);
+}
+
+.site-nav-links a.active,
+.site-nav-links a:hover {
+  color: var(--accent);
+  background: rgba(94, 240, 211, 0.1);
+  border-color: rgba(94, 240, 211, 0.24);
+}
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+}
+
+.nav-cta {
+  display: inline-flex;
+  min-height: 38px;
+  align-items: center;
+  border: 1px solid var(--accent);
+  border-radius: 4px;
+  padding: 0.45rem 1rem;
+  color: var(--accent);
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  text-decoration: none;
+  transition: background var(--transition);
+}
+
+.nav-cta:hover {
+  background: var(--accent-tint);
+}
+
+.container {
+  width: min(100%, var(--max-width));
+  margin: 0 auto;
+}
+
+.section {
+  padding: var(--section-pad);
+}
+
+.section-alt {
+  background:
+    linear-gradient(120deg, rgba(116, 199, 255, 0.14), transparent 32%),
+    linear-gradient(270deg, rgba(185, 167, 255, 0.13), transparent 30%),
+    var(--bg-alt);
+}
+
+.section-title {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2.75rem;
+  color: var(--text);
+  font-size: 1.7rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.section-title::after {
+  content: '';
+  flex: 1;
+  max-width: 280px;
+  height: 1px;
+  background: var(--border);
+}
+
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  padding: 0 1.5rem;
+  background:
+    linear-gradient(125deg, rgba(94, 240, 211, 0.16), transparent 24%),
+    linear-gradient(72deg, transparent 0%, rgba(116, 199, 255, 0.12) 42%, transparent 68%),
+    linear-gradient(148deg, rgba(255, 123, 138, 0.12), transparent 30%),
+    #0f1726;
+}
+
+.hero-bg-grid {
+  position: absolute;
+  inset: -60px;
+  background-image:
+    linear-gradient(rgba(94, 240, 211, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(116, 199, 255, 0.08) 1px, transparent 1px),
+    repeating-linear-gradient(115deg, transparent 0 88px, rgba(255, 191, 105, 0.06) 88px 90px);
+  background-size: 48px 48px, 48px 48px, 180px 180px;
+  transform: rotate(-1deg);
+  animation: gridFloat 22s linear infinite;
+  pointer-events: none;
+}
+
+.hero::after {
+  content: '';
+  position: absolute;
+  inset: auto 0 0;
+  height: 34%;
+  background: linear-gradient(180deg, transparent, rgba(16, 24, 39, 0.88));
+  pointer-events: none;
+}
+
+@keyframes gridFloat {
+  from {
+    background-position: 0 0, 0 0, 0 0;
+  }
+  to {
+    background-position: 48px 48px, -48px 48px, 180px 180px;
+  }
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  width: min(100%, var(--max-width));
+  margin: 0 auto;
+  padding-top: 88px;
+}
+
+.hero-greeting,
+.page-kicker {
+  font-family: var(--font-mono);
+  color: var(--accent);
+}
+
+.hero-greeting {
+  margin-bottom: 1rem;
+  font-size: 1rem;
+  letter-spacing: 0.12em;
+}
+
+.page-kicker {
+  display: inline-block;
+  margin-bottom: 0.9rem;
+  padding: 0.35rem 0.7rem;
+  border: 1px solid rgba(94, 240, 211, 0.36);
+  border-radius: 999px;
+  font-size: 0.74rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.hero-name {
+  margin-bottom: 0.6rem;
+  color: var(--lightest-slate);
+  font-size: clamp(2.8rem, 6.5vw, 4.8rem);
+  font-weight: 700;
+  line-height: 1.05;
+}
+
+.hero-name-zh {
+  margin-left: 0.5rem;
+  color: var(--accent);
+  text-shadow: 0 0 28px rgba(94, 240, 211, 0.28);
+  font-size: 0.55em;
+  font-weight: 400;
+  vertical-align: middle;
+}
+
+.hero-title {
+  margin-bottom: 0.9rem;
+  color: var(--slate);
+  font-size: clamp(1.5rem, 3.5vw, 2.6rem);
+  font-weight: 600;
+}
+
+.hero-subtitle {
+  max-width: 680px;
+  margin-bottom: 2.5rem;
+  color: var(--slate);
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  letter-spacing: 0.04em;
+}
+
+.hero-cta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 3rem;
+}
+
+.btn {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  padding: 0.85rem 1.75rem;
+  font-family: var(--font-mono);
+  font-size: 0.88rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: background var(--transition), color var(--transition), box-shadow var(--transition);
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--accent), var(--sun));
+  color: var(--navy);
+}
+
+.btn-primary:hover {
+  background: transparent;
+  color: var(--accent);
+  box-shadow: inset 0 0 0 2px var(--accent);
+}
+
+.btn-outline {
+  border: 2px solid var(--accent);
+  color: var(--accent);
+}
+
+.btn-outline:hover {
+  background: rgba(94, 240, 211, 0.12);
+}
+
+.hero-socials {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.4rem;
+}
+
+.hero-socials a {
+  color: var(--slate);
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  text-decoration: none;
+  transition: color var(--transition), transform var(--transition);
+}
+
+.hero-socials a:hover {
+  color: var(--accent);
+  transform: translateY(-2px);
+}
+
+.subpage-body {
+  background:
+    linear-gradient(120deg, rgba(94, 240, 211, 0.15), transparent 24%),
+    linear-gradient(240deg, rgba(255, 191, 105, 0.18), transparent 28%),
+    linear-gradient(180deg, #101827 0, #17243a 340px, #fffaf3 340px, #f6fbff 100%);
+}
+
+.subpage-main {
+  padding-top: 84px;
+}
+
+.page-hero {
+  padding: 4.5rem 1.5rem 2rem;
+  color: var(--lightest-slate);
+}
+
+.page-title {
+  margin-bottom: 0.9rem;
+  font-size: clamp(2.6rem, 6vw, 4rem);
+  line-height: 1.05;
+}
+
+.page-description {
+  max-width: 720px;
+  color: var(--light-slate);
+  font-size: 1.02rem;
+}
+
+.footer {
+  padding: 3.5rem 1.5rem;
+  background:
+    linear-gradient(130deg, rgba(94, 240, 211, 0.11), transparent 30%),
+    linear-gradient(250deg, rgba(255, 123, 138, 0.1), transparent 28%),
+    var(--navy);
+  text-align: center;
+}
+
+.footer-name {
+  margin-bottom: 0.3rem;
+  color: var(--lightest-slate);
+  font-size: 1.4rem;
+  font-weight: 700;
+}
+
+.footer-name span {
+  margin-left: 0.5rem;
+  color: var(--accent);
+  font-size: 0.9rem;
+  font-weight: 400;
+}
+
+.footer-title {
+  margin-bottom: 1.5rem;
+  color: var(--slate);
+  font-size: 0.9rem;
+}
+
+.footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 0.9rem;
+  margin-bottom: 1.5rem;
+}
+
+.footer-links a {
+  color: var(--light-slate);
+  font-size: 0.88rem;
+  text-decoration: none;
+}
+
+.footer-links a:hover {
+  color: var(--accent);
+}
+
+.footer-links span,
+.footer-copy {
+  color: var(--slate);
+}
+
+.footer-copy {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+}
+
+@media (max-width: 700px) {
+  .navbar {
+    padding-inline: 1rem;
+  }
+
+  .nav-container {
+    gap: 0.8rem;
+  }
+
+  .site-nav-links {
+    gap: 0.25rem;
+  }
+
+  .site-nav-links li:nth-child(3) {
+    display: none;
+  }
+
+  .site-nav-links a,
+  .nav-cta {
+    padding-inline: 0.65rem;
+    font-size: 0.74rem;
+  }
+
+  .hero-name {
+    font-size: 2.45rem;
+  }
+
+  .hero-name-zh {
+    display: block;
+    margin: 0.35rem 0 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .nav-logo {
+    font-size: 1.15rem;
+  }
+
+  .hero-cta {
+    flex-direction: column;
+  }
+
+  .btn {
+    width: 100%;
+  }
+}

@@ -1,0 +1,75 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+}
+
+:root {
+  --navy: #101827;
+  --navy-light: #17243a;
+  --slate: #91a0c2;
+  --light-slate: #c1c8e7;
+  --lightest-slate: #eef3ff;
+  --accent: #5ef0d3;
+  --accent-tint: rgba(94, 240, 211, 0.12);
+  --sky: #74c7ff;
+  --coral: #ff7b8a;
+  --sun: #ffbf69;
+  --violet: #b9a7ff;
+  --bg: #fffaf3;
+  --bg-alt: #eef8ff;
+  --surface: rgba(255, 255, 255, 0.86);
+  --text: #172033;
+  --text-muted: #64718b;
+  --border: #dbe5f0;
+  --font-main: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-mono: 'Fira Code', 'Consolas', 'Courier New', monospace;
+  --radius: 8px;
+  --shadow: 0 10px 28px rgba(25, 39, 68, 0.08);
+  --shadow-lg: 0 18px 52px rgba(25, 39, 68, 0.14);
+  --transition: 0.22s ease;
+  --max-width: 1080px;
+  --section-pad: 5.5rem 1.5rem;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 84px;
+}
+
+body {
+  min-height: 100vh;
+  font-family: var(--font-main);
+  color: var(--text);
+  background:
+    linear-gradient(135deg, rgba(116, 199, 255, 0.14), transparent 28%),
+    linear-gradient(225deg, rgba(255, 191, 105, 0.16), transparent 32%),
+    linear-gradient(180deg, #fffaf3 0%, #f6fbff 42%, #fff7fb 100%);
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+@media (max-width: 480px) {
+  :root {
+    --section-pad: 4rem 1.25rem;
+  }
+}

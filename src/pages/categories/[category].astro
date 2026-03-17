@@ -1,0 +1,41 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ArticleCard from '../../components/ArticleCard.astro';
+import { site } from '../../data/site';
+import { getCategorySlug, getPublicPosts, getUniqueCategories, isCategoryMatch } from '../../utils/posts';
+
+export async function getStaticPaths() {
+  const posts = getPublicPosts(await getCollection('blog'));
+  return getUniqueCategories(posts).map((category) => ({
+    params: { category: getCategorySlug(category) },
+    props: { category }
+  }));
+}
+
+const { category } = Astro.props;
+const posts = getPublicPosts(await getCollection('blog')).filter((post) => isCategoryMatch(post.data.category, getCategorySlug(category)));
+---
+
+<BaseLayout
+  title={`${category} | ${site.name}`}
+  description={`Articles in ${category}.`}
+  bodyClass="subpage-body"
+>
+  <main class="subpage-main">
+    <section class="page-hero">
+      <div class="container">
+        <p class="page-kicker">Category</p>
+        <h1 class="page-title">{category}</h1>
+        <p class="page-description">{posts.length} article{posts.length === 1 ? '' : 's'} in this category.</p>
+      </div>
+    </section>
+    <section class="section">
+      <div class="container blog-main">
+        <div class="blog-feed">
+          {posts.map((post) => <ArticleCard post={post} />)}
+        </div>
+      </div>
+    </section>
+  </main>
+</BaseLayout>

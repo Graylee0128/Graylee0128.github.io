@@ -1,0 +1,33 @@
+---
+import { navItems, site } from '../data/site';
+
+const currentPath = Astro.url.pathname;
+
+function isActive(href: string) {
+  if (href === '/') return currentPath === '/';
+  return currentPath.startsWith(href);
+}
+---
+
+<nav class="navbar navbar-solid">
+  <div class="nav-container">
+    <a href="/" class="nav-logo">HH<span>.</span></a>
+    <ul class="nav-links site-nav-links">
+      {navItems.map((item) => (
+        <li>
+          <a
+            href={item.href}
+            class:list={[{ active: !item.external && isActive(item.href) }]}
+            target={item.external ? '_blank' : undefined}
+            rel={item.external ? 'noopener' : undefined}
+          >
+            {item.label}
+          </a>
+        </li>
+      ))}
+    </ul>
+    <div class="nav-actions">
+      <a href={`mailto:${site.email}`} class="nav-cta">Contact</a>
+    </div>
+  </div>
+</nav>

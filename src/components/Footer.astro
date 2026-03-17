@@ -1,0 +1,18 @@
+---
+import { site } from '../data/site';
+---
+
+<footer class="footer">
+  <div class="container">
+    <p class="footer-name">{site.name} <span>{site.nameZh}</span></p>
+    <p class="footer-title">{site.title}</p>
+    <div class="footer-links">
+      <a href={`mailto:${site.email}`}>{site.email}</a>
+      <span>·</span>
+      <a href={site.github} target="_blank" rel="noopener">GitHub</a>
+      <span>·</span>
+      <a href={site.linkedin} target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+    <p class="footer-copy">© 2026 {site.name} · Built with Astro</p>
+  </div>
+</footer>

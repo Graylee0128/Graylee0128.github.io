@@ -1,0 +1,41 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ArticleCard from '../../components/ArticleCard.astro';
+import { site } from '../../data/site';
+import { getPublicPosts, getTagSlug, getUniqueTags, isTagMatch } from '../../utils/posts';
+
+export async function getStaticPaths() {
+  const posts = getPublicPosts(await getCollection('blog'));
+  return getUniqueTags(posts).map((tag) => ({
+    params: { tag: getTagSlug(tag) },
+    props: { tag }
+  }));
+}
+
+const { tag } = Astro.props;
+const posts = getPublicPosts(await getCollection('blog')).filter((post) => post.data.tags.some((item) => isTagMatch(item, getTagSlug(tag))));
+---
+
+<BaseLayout
+  title={`${tag} | ${site.name}`}
+  description={`Articles tagged ${tag}.`}
+  bodyClass="subpage-body"
+>
+  <main class="subpage-main">
+    <section class="page-hero">
+      <div class="container">
+        <p class="page-kicker">Tag</p>
+        <h1 class="page-title">{tag}</h1>
+        <p class="page-description">{posts.length} article{posts.length === 1 ? '' : 's'} with this tag.</p>
+      </div>
+    </section>
+    <section class="section">
+      <div class="container blog-main">
+        <div class="blog-feed">
+          {posts.map((post) => <ArticleCard post={post} />)}
+        </div>
+      </div>
+    </section>
+  </main>
+</BaseLayout>

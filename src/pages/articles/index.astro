@@ -1,0 +1,112 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ArticleCard from '../../components/ArticleCard.astro';
+import { site } from '../../data/site';
+import {
+  getCategorySlug,
+  getPublicPosts,
+  getTagSlug,
+  getUniqueCategories,
+  getUniqueTags
+} from '../../utils/posts';
+
+const posts = getPublicPosts(await getCollection('blog'));
+const categories = getUniqueCategories(posts);
+const tags = getUniqueTags(posts);
+---
+
+<BaseLayout
+  title={`${site.name} | Articles`}
+  description="Technical notes and field observations on DevOps, AWS, networking, and cloud architecture."
+  bodyClass="subpage-body"
+>
+  <main class="subpage-main">
+    <section class="page-hero">
+      <div class="container">
+        <p class="page-kicker">Writing</p>
+        <h1 class="page-title">Articles</h1>
+        <p class="page-description">
+          Technical notes and field observations on DevOps, AWS, networking, and cloud architecture.
+        </p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="blog-layout">
+          <div class="blog-main">
+            <div class="blog-toolbar">
+              <span class="toolbar-tag">{posts.length} published</span>
+              <div class="toolbar-tags">
+                {categories.map((category) => (
+                  <a class="toolbar-tag" href={`/categories/${getCategorySlug(category)}/`}>{category}</a>
+                ))}
+              </div>
+            </div>
+            <div class="blog-feed">
+              {posts.length > 0 ? (
+                posts.map((post) => <ArticleCard post={post} />)
+              ) : (
+                <section class="empty-state">
+                  <p class="empty-state-kicker">No published articles</p>
+                  <h2>Articles are being organized.</h2>
+                  <p>
+                    The old display templates have been removed. New posts will appear here when Markdown content is marked as published.
+                  </p>
+                </section>
+              )}
+            </div>
+          </div>
+
+          <aside class="blog-sidebar">
+            <section class="sidebar-card author-card">
+              <div class="author-avatar">HH</div>
+              <h2 class="author-name">{site.handle}</h2>
+              <p class="author-bio">
+                DevOps, AWS, networking, systems architecture, and the operational side of cloud learning.
+              </p>
+              <div class="author-stats">
+                <div class="author-stat">
+                  <strong>{posts.length}</strong>
+                  <span>Articles</span>
+                </div>
+                <div class="author-stat">
+                  <strong>{tags.length}</strong>
+                  <span>Tags</span>
+                </div>
+              </div>
+            </section>
+
+            <section class="sidebar-card">
+              <h3 class="sidebar-title">Categories</h3>
+              <ul class="sidebar-list">
+                {categories.length > 0 ? (
+                  categories.map((category) => (
+                    <li>
+                      <a href={`/categories/${getCategorySlug(category)}/`}>
+                        <span>{category}</span>
+                        <span>{posts.filter((post) => post.data.category === category).length}</span>
+                      </a>
+                    </li>
+                  ))
+                ) : (
+                  <li><span>Pending</span><span>0</span></li>
+                )}
+              </ul>
+            </section>
+
+            <section class="sidebar-card">
+              <h3 class="sidebar-title">Tags</h3>
+              <div class="tag-cloud">
+                {tags.length > 0
+                  ? tags.map((tag) => <a class="cloud-tag" href={`/tags/${getTagSlug(tag)}/`}>{tag}</a>)
+                  : <span class="cloud-tag">Pending</span>}
+              </div>
+            </section>
+          </aside>
+        </div>
+      </div>
+    </section>
+  </main>
+</BaseLayout>
