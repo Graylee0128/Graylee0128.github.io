@@ -116,12 +116,12 @@ export const projects = [
     status: 'Enterprise case study',
     description: 'Led a critical RHEL upgrade across major version boundaries in an enterprise environment, solving complex boot failures and LVM architecture issues.',
     highlights: [
-      'Planned and executed RHEL 7.x -> 8.10 -> 9.6 cross-version upgrade using Red Hat Leapp',
-      'Resolved LVM dual-PV architecture post-upgrade boot failure with an initramfs pre-boot mechanism and LVM device whitelist',
-      'Authored upgrade SOP with pre/post reboot validation checklist and rollback procedures',
-      'Validated Oracle WebLogic / WebCenter Sites compatibility on the new RHEL environment'
+      'Planned and executed a RHEL 7.2 -> 7.9 -> 8.10 -> 9.6 in-place upgrade with Red Hat Leapp in an offline (no-RHSM) VMware environment',
+      'Root-caused post-upgrade dracut emergency mode to a dual-PV (sda2 + sdb1) LVM race, where RHEL 8/9 parallelized initramfs tried to activate the root VG before the second PV settled',
+      'Hardened the boot path with an LVM devices-file whitelist packed into initramfs and GRUB rd.lvm.vg / rd.retry / rd.timeout tuning, plus an initramfs pre-activation service for residual races',
+      'Authored the emergency-mode recovery SOP (chroot -> rebuild system.devices -> dracut --regenerate-all) and a pre/post-reboot checklist covering Oracle WebCenter Sites (WebLogic) app-layer validation'
     ],
-    tags: ['RHEL', 'Linux', 'LVM', 'Red Hat Leapp', 'Oracle WebLogic', 'Shell Scripting', 'initramfs'],
+    tags: ['RHEL', 'Linux', 'LVM', 'Red Hat Leapp', 'dracut', 'Oracle WebLogic', 'Shell Scripting', 'initramfs'],
     evidence: [
       {
         label: 'Private case study',
@@ -130,34 +130,6 @@ export const projects = [
       {
         label: 'Case page planned',
         note: 'Reserved for a sanitized writeup that explains the architecture and failure analysis without exposing private materials.'
-      }
-    ]
-  },
-  {
-    title: 'Company Website AWS Migration PoC',
-    period: 'Aug 2025 - Oct 2025',
-    icon: 'AWS',
-    status: 'Architecture PoC',
-    description: 'Led an on-premise to AWS migration proof of concept comparing traditional and serverless architectures, with a projected 80% cost reduction.',
-    highlights: [
-      'Designed and compared 2-Tier (EC2 + RDS) and Serverless (Lambda + DynamoDB) architectures',
-      'Automated infrastructure deployment via Terraform across VPC, EC2, RDS, Lambda, API Gateway, and DynamoDB',
-      'Produced cost analysis: traditional architecture around $230/mo vs serverless around $25-45/mo',
-      'Delivered PoC documentation covering architecture design, deployment guide, and performance testing'
-    ],
-    tags: ['AWS', 'Terraform', 'Lambda', 'DynamoDB', 'EC2', 'RDS', 'API Gateway', 'IaC'],
-    evidence: [
-      {
-        label: 'AWS articles',
-        href: '/articles/'
-      },
-      {
-        label: 'Private PoC',
-        note: 'Company migration materials are private; public representation is handled through architecture writeups.'
-      },
-      {
-        label: 'Demo page planned',
-        note: 'Reserved for a sanitized architecture comparison page or Terraform walkthrough.'
       }
     ]
   }
