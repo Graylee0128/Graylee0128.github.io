@@ -5,7 +5,7 @@ export const site = {
   title: 'DevOps & Cloud Engineer',
   description: 'AWS Certified Solutions Architect focused on Linux, Terraform, Kubernetes, and maintainable cloud systems.',
   url: 'https://graylee0128.github.io',
-  email: '910128asd@gmail.com',
+  email: 'xinhanli.job@gmail.com',
   github: 'https://github.com/Graylee0128',
   linkedin: 'https://www.linkedin.com/in/hsin-han-li-2518a11b6/'
 } as const;
@@ -41,32 +41,32 @@ export const profile = {
 
 export const experiences = [
   {
+    role: 'Cloud Security Engineer Bootcamp (530h)',
+    company: 'CCU Continuing Education x NTC.im',
+    period: 'Mar 2026 - Aug 2026',
+    type: 'Training'
+  },
+  {
     role: 'Linux / Cloud Systems Engineer',
     company: 'npdata',
     period: 'Jun 2025 - Jan 2026',
     type: 'Full-time'
-  },
-  {
-    role: 'Technical Contributor',
-    company: 'NTC.im',
-    period: 'Mar 2025 - Sep 2025',
-    type: 'Project'
   }
 ] as const;
 
 export const projects = [
   {
-    title: 'Secure FinOps Platform for Kubernetes',
+    title: 'Secure Kubernetes Platform',
     period: '2026 - In progress',
     icon: 'K8S',
     status: 'Portfolio build',
-    description: 'Umbrella homelab platform project combining GitOps, observability, DevSecOps guardrails, incident response, and FinOps practices around a Kubernetes workload.',
+    description: 'Umbrella homelab platform project combining GitOps, observability, and DevSecOps guardrails around a Kubernetes workload.',
     highlights: [
       'Defines a platform narrative from GitHub Actions and GHCR to ArgoCD and k3s',
       'Uses an observable workload to validate monitoring, alerting, runbooks, rollback, and backup patterns',
-      'Maps homelab implementation choices to AWS services such as EKS, ALB, CloudWatch, IAM, and Cost Explorer'
+      'Maps homelab implementation choices to AWS services such as EKS, ALB, CloudWatch, and IAM'
     ],
-    tags: ['Kubernetes', 'GitOps', 'SRE', 'DevSecOps', 'FinOps', 'ArgoCD'],
+    tags: ['Kubernetes', 'GitOps', 'SRE', 'DevSecOps', 'ArgoCD'],
     evidence: [
       {
         label: 'Repo',
