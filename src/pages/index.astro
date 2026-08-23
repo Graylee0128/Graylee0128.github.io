@@ -161,7 +161,7 @@ function getEvidenceNote(item: ProjectEvidence) {
               <div class="cert-info">
                 <h3>{credential.title}</h3>
                 <p>{credential.detail}</p>
-                <span class="cert-year">{credential.year}</span>
+                {credential.year && <span class="cert-year">{credential.year}</span>}
               </div>
             </article>
           ))}
