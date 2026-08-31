@@ -129,60 +129,6 @@ export const projects = [
         note: 'Reserved for a sanitized writeup of the topology tool and the ELK hardening script.'
       }
     ]
-  },
-  {
-    title: 'Secure Kubernetes Platform',
-    period: '2026 - In progress',
-    icon: 'K8S',
-    status: 'Portfolio build',
-    description: 'Umbrella homelab platform project combining GitOps, observability, and DevSecOps guardrails around a Kubernetes workload.',
-    highlights: [
-      'Defines a platform narrative from GitHub Actions and GHCR to ArgoCD and k3s',
-      'Uses an observable workload to validate monitoring, alerting, runbooks, rollback, and backup patterns',
-      'Maps homelab implementation choices to AWS services such as EKS, ALB, CloudWatch, and IAM'
-    ],
-    tags: ['Kubernetes', 'GitOps', 'SRE', 'DevSecOps', 'ArgoCD'],
-    evidence: [
-      {
-        label: 'Repo',
-        href: 'https://github.com/Graylee0128/devops-homelab'
-      },
-      {
-        label: 'Project plan',
-        href: 'https://github.com/Graylee0128/devops-homelab/tree/master/projects/secure-finops-k8s-platform'
-      },
-      {
-        label: 'Demo page planned',
-        note: 'Reserved for a future live walkthrough, dashboard, or architecture demo page.'
-      }
-    ]
-  },
-  {
-    title: 'Observable E-commerce Platform',
-    period: '2026 - In progress',
-    icon: 'SRE',
-    status: 'Workload lab',
-    description: 'A production-flow SRE lab that uses a simplified e-commerce workload to demonstrate deployment, monitoring, logs, alerts, rollback, backup, and persistent state management.',
-    highlights: [
-      'Models an app stack with API, PostgreSQL, Redis, worker, and mock payment boundary',
-      'Plans Docker Compose and Kubernetes paths so the workload can be validated locally and in homelab k3s',
-      'Uses Prometheus, Grafana, Loki, Alertmanager, GitHub Actions, and ArgoCD as operational evidence'
-    ],
-    tags: ['Observability', 'Prometheus', 'Grafana', 'Loki', 'CI/CD', 'PostgreSQL'],
-    evidence: [
-      {
-        label: 'Repo',
-        href: 'https://github.com/Graylee0128/devops-homelab'
-      },
-      {
-        label: 'Project plan',
-        href: 'https://github.com/Graylee0128/devops-homelab/tree/master/projects/observable-ecommerce-platform'
-      },
-      {
-        label: 'Demo page planned',
-        note: 'Reserved for a future live walkthrough, dashboard, or architecture demo page.'
-      }
-    ]
   }
 ] as const;
 
